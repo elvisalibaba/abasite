@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import "./globals.css";
+import "@/styles/tokens.css";
+import "@/styles/public-system.css";
 import ScrollProgress from "@/components/motion/ScrollProgress";
-import ABALoader from "@/components/motion/ABALoader";
+import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
   title: {
@@ -12,7 +14,7 @@ export const metadata: Metadata = {
   },
   description:
     "Africa Business Agency accompagne les institutions et organisations dans leurs projets stratégiques, technologiques et opérationnels.",
-  metadataBase: new URL("https://aba.cd"),
+  metadataBase: new URL(siteConfig.url),
   applicationName: "Africa Business Agency",
   icons: {
     icon: [{ url: "/image.png", type: "image/png" }],
@@ -44,13 +46,15 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const organization = { "@context":"https://schema.org", "@type":"Organization", name:siteConfig.name, url:siteConfig.url, email:siteConfig.email, telephone:siteConfig.phone, address:{"@type":"PostalAddress",addressLocality:"Kinshasa",addressCountry:"CD"} };
   return (
     <html lang="fr" suppressHydrationWarning>
       <body>
-        <ABALoader />
+        <a className="skip-link" href="#contenu-principal">Aller au contenu</a>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(organization)}} />
         <ScrollProgress />
         <Header />
-        <main>{children}</main>
+        <main id="contenu-principal">{children}</main>
         <Footer />
       </body>
     </html>

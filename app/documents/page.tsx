@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import CTA from "@/components/CTA";
 import PageHero from "@/components/PageHero";
 import { getPublicDocuments } from "@/lib/cms";
+import EmptyState from "@/components/public/EmptyState";
 
 export const metadata: Metadata = {
   title: "Centre de ressources",
@@ -28,14 +29,14 @@ export default async function DocumentsPage() {
         accent="documents"
       />
 
-      <div className="container documents-facts-wrap" aria-label="Repères documentaires">
+      {publishedDocuments.length>0?<div className="container documents-facts-wrap" aria-label="Repères documentaires">
         <dl className="documents-facts">
           <div><dt>{String(publishedDocuments.length).padStart(2,"0")}</dt><dd>Documents publiés</dd></div>
           <div><dt>04</dt><dd>Familles de ressources</dd></div>
           <div><dt>V°</dt><dd>Versions contrôlées</dd></div>
           <div><dt>ABA</dt><dd>Source institutionnelle</dd></div>
         </dl>
-      </div>
+      </div>:null}
 
       <section className="section documents-library-section">
         <div className="container">
@@ -50,25 +51,22 @@ export default async function DocumentsPage() {
               <a href={document.download_url} target="_blank" rel="noreferrer">Télécharger <span aria-hidden="true">↓</span></a>
               <i>{String(index+1).padStart(2,"0")}</i>
             </article>)}
-          </div>:<div className="documents-awaiting">
-            <strong>Publication documentaire en préparation</strong>
-            <p>Les ressources officielles apparaîtront ici après validation et publication depuis la banque documentaire ABA.</p>
-          </div>}
+          </div>:<EmptyState title="Publications officielles en préparation" description="Les documents institutionnels seront disponibles ici après validation. Pour recevoir une présentation ou une fiche de service, contactez directement notre équipe." action="Demander un document"/>}
         </div>
       </section>
 
-      <section className="section muted-section documents-families-section">
+      {publishedDocuments.length>0?<section className="section muted-section documents-families-section">
         <div className="container">
           <div className="section-heading split-heading"><div><div className="eyebrow dark">CLASSEMENT</div><h2>Une bibliothèque organisée selon votre besoin.</h2></div><p>Quatre familles permettent de retrouver rapidement le bon niveau d’information.</p></div>
           <div className="documents-family-grid">{resourceFamilies.map(([number,title,text])=><article key={number}><span>{number}</span><h3>{title}</h3><p>{text}</p></article>)}</div>
         </div>
-      </section>
-      <section className="section dark-section">
+      </section>:null}
+      {publishedDocuments.length>0?<section className="section dark-section">
         <div className="container publication-note">
           <div><span>PROCESSUS DE PUBLICATION</span><h2>Des documents validés avant leur mise en ligne.</h2></div>
           <p>Chaque ressource institutionnelle est classée, relue, approuvée, datée et associée à une version afin d’éviter la circulation de documents obsolètes.</p>
         </div>
-      </section>
+      </section>:null}
       <CTA title="Vous recherchez un document ou une présentation spécifique ?" />
     </>
   );

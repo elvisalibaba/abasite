@@ -1,0 +1,12 @@
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import LogoABA from "../LogoABA";
+import { publicLinks } from "./navigation-data";
+import { SolutionsMenu } from "./SolutionsMenu";
+
+export function MobileDrawer({ open, onClose, trigger }: { open:boolean; onClose:()=>void; trigger:React.RefObject<HTMLButtonElement | null> }) {
+  const drawer=useRef<HTMLDivElement>(null); const [solutions,setSolutions]=useState(false);
+  useEffect(()=>{if(!open)return; const previous=document.activeElement as HTMLElement|null; const triggerElement=trigger.current; document.body.style.overflow="hidden"; drawer.current?.querySelector<HTMLElement>("button,a")?.focus(); const key=(event:KeyboardEvent)=>{if(event.key==="Escape")onClose();if(event.key!=="Tab"||!drawer.current)return;const items=[...drawer.current.querySelectorAll<HTMLElement>('a,button:not([disabled])')];if(!items.length)return;const first=items[0],last=items[items.length-1];if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus()}else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus()}};document.addEventListener("keydown",key);return()=>{document.body.style.overflow="";document.removeEventListener("keydown",key);(triggerElement||previous)?.focus()}},[open,onClose,trigger]);
+  if(!open)return null;
+  return <><button className="mobile-backdrop" onClick={onClose} aria-label="Fermer le menu"/><div ref={drawer} className="mobile-drawer" role="dialog" aria-modal="true" aria-label="Menu principal"><div className="mobile-drawer-head"><LogoABA href="/" variant="dark" size="sm"/><button className="mobile-close" onClick={onClose} aria-label="Fermer le menu">×</button></div><nav className="mobile-nav" aria-label="Navigation mobile">{publicLinks.map(([label,href])=><Link href={href} onClick={onClose} key={href}>{label}<span aria-hidden="true">→</span></Link>)}<button className="mobile-solutions-trigger" aria-expanded={solutions} aria-controls="mobile-solutions" onClick={()=>setSolutions(value=>!value)}>Solutions <span aria-hidden="true">{solutions?"−":"+"}</span></button>{solutions?<div id="mobile-solutions"><SolutionsMenu mobile onNavigate={onClose}/></div>:null}<Link href="/espace/login" onClick={onClose}>Espace projet <span aria-hidden="true">→</span></Link></nav><Link className="mobile-drawer-action" href="/inscription" onClick={onClose}>Soumettre un projet</Link></div></>;
+}

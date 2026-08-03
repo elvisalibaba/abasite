@@ -23,6 +23,12 @@ const deliveryModes = [
   ["03", "Programme évolutif", "Une transformation par étapes, avec pilotes, indicateurs, gouvernance et montée en charge."],
 ];
 
+const expertiseFamilies = [
+  { title:"Transformation et gouvernance", slugs:["transformation-numerique-institutionnelle","audit-gouvernance-donnees","ged-ecm-archivage"] },
+  { title:"Identité, données et sécurité", slugs:["biometrie-identite-numerique","securite-systemes-information","controle-acces-mobile"] },
+  { title:"Solutions, infrastructures et déploiement", slugs:["solutions-numeriques-integrees","deploiement-securisation","iot-integration","deploiement-supervision","transport-public-billettique","gestion-stationnement","smart-asset-management"] },
+];
+
 export default function ExpertisesPage() {
   return (
     <>
@@ -72,9 +78,7 @@ export default function ExpertisesPage() {
           <nav className="expertise-mobile-index" aria-label="Accès rapide aux expertises">
             {expertises.map(item => <a href={`#expertise-${item.slug}`} key={item.slug}><span>{item.number}</span>{item.shortTitle}</a>)}
           </nav>
-          <div className="expertise-grid expertise-grid-page">
-            {expertises.map((item) => <ExpertiseCard item={item} key={item.slug} />)}
-          </div>
+          <div className="expertise-family-list">{expertiseFamilies.map((family,index)=><section className="expertise-family" key={family.title}><header><span>0{index+1}</span><h3>{family.title}</h3></header><div className="expertise-grid expertise-grid-page">{family.slugs.map(slug=>expertises.find(item=>item.slug===slug)).filter((item):item is (typeof expertises)[number]=>Boolean(item)).map(item=><ExpertiseCard item={item} key={item.slug}/>)}</div></section>)}</div>
         </div>
       </section>
 

@@ -43,19 +43,6 @@ export default async function Home() {
             </div>
           </AnimatedSection>
 
-          <div className="home-command" aria-label="Capacités opérationnelles ABA">
-            <div className="command-head"><span><i /> SYSTÈME OPÉRATIONNEL</span><small>ABA / 01</small></div>
-            <div className="command-core">
-              <div className="command-ring"><Fingerprint size={44} /><span /></div>
-              <small>IDENTITÉ NUMÉRIQUE</small>
-              <strong>Sécuriser chaque interaction.</strong>
-            </div>
-            <div className="command-modules">
-              <div><Database size={19} /><span><small>DONNÉES</small><strong>Gouvernées</strong></span><i /></div>
-              <div><Network size={19} /><span><small>SYSTÈMES</small><strong>Connectés</strong></span><i /></div>
-              <div><Shield size={19} /><span><small>SÉCURITÉ</small><strong>Intégrée</strong></span><i /></div>
-            </div>
-          </div>
         </div>
         <a className="home-scroll" href="#solutions"><span /> Découvrir</a>
       </section>
@@ -164,6 +151,10 @@ export default async function Home() {
             ))}
           </div>
         </div>
+      </section>
+
+      <section className="section home-method" aria-labelledby="home-method-title">
+        <div className="container"><div className="home-section-head compact"><div><span className="home-label">04 / MÉTHODE</span><h2 id="home-method-title">Une conduite claire, du besoin au terrain.</h2></div><p>Chaque étape produit une décision, un livrable et des critères de validation partagés.</p></div><div className="home-method-grid">{[["01","Cadrer","Objectifs, responsabilités et risques."],["02","Concevoir","Architecture, usages et sécurité."],["03","Déployer","Intégration, formation et mise en service."],["04","Pérenniser","Support, mesure et transfert de compétences."]].map(([number,title,text])=><article key={number}><span>{number}</span><h3>{title}</h3><p>{text}</p></article>)}</div></div>
       </section>
 
       <CTA />

@@ -19,9 +19,9 @@ export default function NewsPage() {
   return (
     <>
       <PageHero
-        eyebrow="ACTUALITÉS ET ANALYSES"
+        eyebrow="NOTES ABA"
         title="Comprendre les transformations qui renforcent les organisations."
-        description="ABA partage ses méthodes, retours d’expérience et réflexions sur les données, l’identité numérique, les infrastructures et le déploiement."
+        description="Des notes institutionnelles concises sur les données, l’identité numérique, les infrastructures et le déploiement."
         accent="news"
       />
 
