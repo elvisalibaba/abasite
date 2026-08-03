@@ -199,10 +199,55 @@ export const expertises: Expertise[] = [
     services: ["Diagnostic de maturité", "Feuille de route", "Design de services", "Architecture d’entreprise", "Conduite du changement", "Pilotage de programme"],
     process: [{title:"Diagnostiquer",text:"Évaluer la maturité actuelle."},{title:"Aligner",text:"Définir priorités et responsabilités."},{title:"Transformer",text:"Exécuter par programmes mesurables."},{title:"Ancrer",text:"Accompagner les usages et la gouvernance."}],
     accent: "transform", image: "/images/aba/expertises/transformation-institutionnelle.webp"
+  },
+  {
+    slug:"ged-ecm-archivage",number:"09",title:"GED, ECM et archivage électronique",shortTitle:"GED et archivage",
+    summary:"Organiser, sécuriser et retrouver les documents institutionnels pendant tout leur cycle de vie.",
+    description:"ABA structure les plans de classement, circuits de validation, droits d’accès, durées de conservation et mécanismes de recherche nécessaires à une gestion documentaire fiable. La solution peut couvrir la numérisation, la GED, l’ECM, l’archivage électronique et l’intégration aux applications métier.",
+    outcomes:["Documents centralisés et retrouvés rapidement","Versions et validations traçables","Accès aux dossiers sensibles maîtrisés","Conservation et archivage organisés"],
+    services:["Audit documentaire et plan de classement","Numérisation et indexation","Gestion électronique des documents","Workflows de visa et validation","Archivage électronique et conservation","Recherche, droits d’accès et journalisation"],
+    process:[{title:"Inventorier",text:"Qualifier les fonds, formats, responsabilités et obligations."},{title:"Classer",text:"Définir métadonnées, nomenclatures et règles de conservation."},{title:"Dématérialiser",text:"Numériser, intégrer les workflows et sécuriser les accès."},{title:"Exploiter",text:"Former, superviser et contrôler la qualité documentaire."}],
+    accent:"data",image:"/images/aba/expertises/gouvernance-donnees.webp"
+  },
+  {
+    slug:"controle-acces-mobile",number:"10",title:"Contrôle d’accès et vérification mobile",shortTitle:"Contrôle d’accès mobile",
+    summary:"Vérifier les personnes, titres et autorisations aux points fixes, temporaires ou isolés.",
+    description:"ABA conçoit des dispositifs de contrôle reliés aux référentiels autorisés, capables d’associer cartes, QR codes, biométrie, terminaux mobiles et journaux de contrôle selon le niveau de sécurité attendu.",
+    outcomes:["Contrôles plus rapides et homogènes","Autorisations vérifiables sur le terrain","Historique centralisé des passages","Fonctionnement adapté aux sites distants"],
+    services:["Étude des accès et niveaux d’habilitation","Contrôle mobile online et offline","Lecture cartes, QR, NFC et biométrie","Gestion des visiteurs et événements","Journalisation et alertes","Intégration aux systèmes existants"],
+    process:[{title:"Cartographier",text:"Identifier sites, flux, identités et risques."},{title:"Configurer",text:"Définir règles, habilitations et modes de contrôle."},{title:"Piloter",text:"Tester sur un accès réel et mesurer les incidents."},{title:"Déployer",text:"Étendre les terminaux, former et superviser."}],
+    accent:"security",image:"/images/aba/expertises/securite-si.webp"
+  },
+  {
+    slug:"transport-public-billettique",number:"11",title:"Transport public et billettique",shortTitle:"Transport public",
+    summary:"Digitaliser la validation, le contrôle des titres et la remontée des opérations de mobilité.",
+    description:"ABA intègre les applications, terminaux mobiles et services de données nécessaires au contrôle des titres, à la billettique et à la supervision des opérations de transport public.",
+    outcomes:["Contrôle des titres plus fiable","Données d’exploitation consolidées","Interventions terrain mieux tracées","Services interopérables et évolutifs"],
+    services:["Étude des parcours et titres","Applications de validation et contrôle","Terminaux mobiles et lecteurs","Fonctionnement hors connexion","API et consolidation des données","Supervision et support terrain"],
+    process:[{title:"Observer",text:"Analyser lignes, titres, contrôles et contraintes terrain."},{title:"Prototyper",text:"Valider les parcours voyageurs et agents."},{title:"Intégrer",text:"Relier terminaux, données et systèmes de gestion."},{title:"Étendre",text:"Déployer par lignes ou zones avec supervision."}],
+    accent:"field",image:"/images/aba/expertises/deploiement-supervision.webp"
+  },
+  {
+    slug:"gestion-stationnement",number:"12",title:"Gestion numérique du stationnement",shortTitle:"Stationnement",
+    summary:"Outiller le contrôle, l’encaissement, la traçabilité et le pilotage du stationnement urbain.",
+    description:"ABA structure des solutions de stationnement associant applications agents, identification des véhicules, paiement, contrôle, géolocalisation et tableaux de bord opérationnels.",
+    outcomes:["Contrôles terrain mieux organisés","Recettes et opérations plus traçables","Vision consolidée des zones","Incidents et contestations documentés"],
+    services:["Cartographie des zones et règles","Application mobile des agents","Paiement et émission de justificatifs","Lecture plaques, QR ou identifiants","Tableaux de bord et rapprochement","Gestion des équipements et support"],
+    process:[{title:"Cadrer",text:"Définir zones, règles, acteurs et modèles opérationnels."},{title:"Configurer",text:"Paramétrer droits, tarifs et circuits de contrôle."},{title:"Piloter",text:"Tester sur une zone représentative."},{title:"Généraliser",text:"Déployer, superviser et ajuster les opérations."}],
+    accent:"iot",image:"/images/aba/expertises/iot-integration.webp"
+  },
+  {
+    slug:"smart-asset-management",number:"13",title:"Smart Asset Management",shortTitle:"Gestion des actifs",
+    summary:"Identifier, localiser et suivre les équipements stratégiques avec RFID, IoT et mobilité.",
+    description:"ABA relie inventaire, identifiants, capteurs, terminaux et plateformes de supervision pour donner une vision fiable du patrimoine matériel et de ses mouvements.",
+    outcomes:["Inventaire physique fiabilisé","Mouvements et affectations traçables","Pertes et indisponibilités réduites","Maintenance mieux préparée"],
+    services:["Audit et référentiel des actifs","Étiquetage code-barres, QR, NFC ou RFID","Applications mobiles d’inventaire","IoT, télémétrie et géolocalisation","Affectations, mouvements et maintenance","Tableaux de bord et alertes"],
+    process:[{title:"Inventorier",text:"Définir actifs, identifiants, sites et responsabilités."},{title:"Identifier",text:"Choisir les technologies de marquage adaptées."},{title:"Connecter",text:"Relier terrain, référentiel et supervision."},{title:"Gouverner",text:"Contrôler les mouvements et la qualité de l’inventaire."}],
+    accent:"iot",image:"/images/aba/expertises/iot-integration.webp"
   }
 ];
 
-export const projects: Project[] = [
+const projectCatalog: Project[] = [
   {
     slug: "identification-controle-institutionnel",
     category: "Identité numérique",
@@ -300,6 +345,54 @@ export const projects: Project[] = [
     impact: ["Parcours simplifiés", "Traçabilité renforcée", "Systèmes interopérables", "Évolutions facilitées"],
     services: ["UX", "Web", "API", "Sécurité", "DevOps"], status: "Plateforme métier", accent: "project-six",
     image: "/images/aba/projects/plateforme-institutionnelle.webp", year: "À valider", technology: "Web · API · Cloud"
+  }
+];
+
+export const projects: Project[] = [
+  {
+    slug:"transformation-numerique-forces-armees",
+    category:"GED et archivage électronique",
+    title:"Transformation numérique des Forces Armées",
+    summary:"Déploiement de solutions documentaires destinées à sécuriser et moderniser les processus administratifs.",
+    challenge:"Structurer la gestion des documents administratifs, améliorer leur disponibilité et encadrer leur conservation dans un environnement institutionnel sensible.",
+    solution:"ABA a déployé des solutions de Gestion Électronique des Documents et d’archivage électronique adaptées aux processus administratifs concernés.",
+    impact:["Gestion documentaire structurée","Accès aux dossiers mieux encadré","Cycle de conservation organisé","Processus administratifs modernisés"],
+    services:["GED","Archivage électronique","Intégration","Gestion des accès","Accompagnement"],
+    status:"Réalisation institutionnelle",
+    accent:"project-one",
+    image:"/images/aba/projects/plateforme-institutionnelle.webp",
+    year:"2013 — 2017",
+    technology:"GED · ECM · Archivage"
+  },
+  {
+    slug:"recensement-biometrique-personnels-militaires",
+    category:"Identité biométrique",
+    title:"Recensement biométrique des personnels militaires",
+    summary:"Développement et déploiement d’un système de recensement, d’enrôlement et de contrôle biométrique.",
+    challenge:"Mettre en place une chaîne cohérente permettant d’enregistrer les personnels, de contrôler la qualité des informations et de vérifier les identités selon les habilitations définies.",
+    solution:"ABA a développé et déployé un dispositif associant recensement, enrôlement et contrôle biométrique des personnels militaires.",
+    impact:["Enrôlement biométrique structuré","Contrôles d’identité outillés","Données regroupées dans un dispositif cohérent","Opérations de recensement supervisées"],
+    services:["Recensement","Enrôlement biométrique","Développement logiciel","Contrôle","Déploiement"],
+    status:"Programme déployé",
+    accent:"project-two",
+    image:"/images/aba/projects/controle-biometrique.webp",
+    year:"2022",
+    technology:"Biométrie · Enrôlement · Contrôle"
+  },
+  {
+    slug:"identification-controle-police-nationale",
+    category:"Identification et contrôle",
+    title:"Extension à la Police Nationale Congolaise",
+    summary:"Mise en œuvre de solutions d’identification et de contrôle des effectifs avec production de cartes biométriques.",
+    challenge:"Étendre les capacités d’identification et de contrôle à un nouveau périmètre institutionnel tout en préparant les opérations, les accès et les supports de contrôle.",
+    solution:"ABA met en œuvre des solutions d’identification et de contrôle des effectifs, comprenant la production de cartes biométriques de contrôle.",
+    impact:["Identification des effectifs outillée","Contrôles facilités sur le terrain","Cartes biométriques de contrôle produites","Dispositif adapté au périmètre de la Police"],
+    services:["Identification","Contrôle des effectifs","Cartes biométriques","Applications métier","Déploiement"],
+    status:"Extension du programme",
+    accent:"project-three",
+    image:"/images/aba/projects/plateforme-terrain.webp",
+    year:"2026",
+    technology:"Identité · Cartes · Mobile"
   }
 ];
 

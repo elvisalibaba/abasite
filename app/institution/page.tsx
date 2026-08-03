@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import CTA from "@/components/CTA";
 import PageHero from "@/components/PageHero";
 
 export const metadata: Metadata = {
   title: "Institution",
-  description: "Fondée en 2013, Africa Business Agency bâtit des solutions congolaises de souveraineté numérique, de biométrie et de sécurité."
+  description: "Fondée en 2013, Africa Business Agency conçoit et intègre des solutions numériques, biométriques et de sécurité en République Démocratique du Congo."
 };
 
 const steps = [
@@ -33,18 +34,32 @@ const history = [
   { period: "2026", title: "Extension à la Police Nationale Congolaise", text: "Mise en œuvre de solutions d’identification et de contrôle des effectifs, avec production de cartes biométriques de contrôle." }
 ];
 
+const audiences = [
+  ["01", "Institutions publiques", "Modernisation des services, gouvernance des données et continuité des opérations."],
+  ["02", "Défense et sécurité", "Identification, contrôle, traçabilité et systèmes adaptés aux environnements sensibles."],
+  ["03", "Organisations stratégiques", "Architecture, intégration et sécurisation des processus critiques à grande échelle."],
+  ["04", "Partenaires technologiques", "Co-construction, déploiement local et transfert durable des compétences."],
+];
+
+const commitments = [
+  ["Sécurité dès la conception", "Les risques, les accès et la protection des données sont traités dès le cadrage."],
+  ["Décisions traçables", "Les choix structurants, responsabilités et validations sont documentés tout au long du projet."],
+  ["Déploiement maîtrisé", "Les tests, la formation, la supervision et la continuité sont préparés avant la mise en service."],
+  ["Autonomie des équipes", "La documentation et le transfert de compétences font partie intégrante de la livraison."],
+];
+
 export default function InstitutionPage() {
   return (
     <>
       <PageHero
         eyebrow="NOTRE INSTITUTION"
-        title="Bâtisseur de souveraineté numérique et technologique."
+        title="Une ingénierie numérique congolaise au service des institutions."
         description="Entreprise congolaise fondée en 2013, ABA conçoit des systèmes numériques, biométriques et de sécurité adaptés aux enjeux stratégiques des institutions africaines."
         accent="institution"
         cta={{ label: "Découvrir nos expertises", href: "/expertises" }}
       />
 
-      <section className="section" id="mission">
+      <section className="section institution-intro" id="mission">
         <div className="container institution-intro-grid">
           <div className="section-copy">
             <div className="eyebrow dark">QUI SOMMES-NOUS ?</div>
@@ -60,6 +75,24 @@ export default function InstitutionPage() {
             <p>
               Nos solutions sont conçues, intégrées et déployées en République Démocratique du Congo par des développeurs et ingénieurs congolais, avec une priorité donnée à la sécurité, la fiabilité et la souveraineté.
             </p>
+            <aside className="institution-statement">
+              <span>NOTRE RAISON D’ÊTRE</span>
+              <strong>Donner aux organisations africaines la maîtrise durable de leurs outils, de leurs données et de leurs opérations.</strong>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section className="section institution-audiences-section">
+        <div className="container">
+          <div className="section-heading split-heading">
+            <div><div className="eyebrow dark">À QUI NOUS NOUS ADRESSONS</div><h2>Des dispositifs pensés pour les environnements exigeants.</h2></div>
+            <p>ABA adapte son niveau d’accompagnement aux responsabilités, aux contraintes de terrain et à la sensibilité de chaque mission.</p>
+          </div>
+          <div className="institution-audiences">
+            {audiences.map(([number, title, text]) => (
+              <article key={number}><span>{number}</span><h3>{title}</h3><p>{text}</p></article>
+            ))}
           </div>
         </div>
       </section>
@@ -76,7 +109,7 @@ export default function InstitutionPage() {
 
       <section className="section dark-section institution-domains">
         <div className="container">
-          <div className="section-heading split-heading"><div><div className="eyebrow">UNE EXPERTISE RECONNUE</div><h2>Une chaîne de compétences complète.</h2></div><p>De l’audit initial à la maintenance, ABA garde la maîtrise des dépendances techniques, opérationnelles et humaines.</p></div>
+          <div className="section-heading split-heading"><div><div className="eyebrow">UNE EXPERTISE INTÉGRÉE</div><h2>Une chaîne de compétences complète.</h2></div><p>De l’audit initial à la maintenance, ABA coordonne les dépendances techniques, opérationnelles et humaines.</p></div>
           <div className="institution-domain-list">{domains.map((domain,index)=><article key={domain}><span>{String(index+1).padStart(2,"0")}</span><h3>{domain}</h3></article>)}</div>
         </div>
       </section>
@@ -92,13 +125,13 @@ export default function InstitutionPage() {
         <div className="container mission-grid">
           <article>
             <span>NOTRE MISSION</span>
-            <h2>Mettre l’innovation au service de la souveraineté.</h2>
+            <h2>Renforcer durablement les capacités numériques.</h2>
             <p>Concevoir, intégrer et maintenir des dispositifs numériques fiables qui renforcent durablement les capacités des institutions.</p>
           </article>
           <article>
             <span>NOTRE VISION</span>
-            <h2>Faire rayonner une technologie « made in DRC ».</h2>
-            <p>Positionner les développeurs et ingénieurs congolais comme acteurs de référence des transformations technologiques africaines.</p>
+            <h2>Faire progresser une technologie conçue en RDC.</h2>
+            <p>Renforcer la contribution des développeurs et ingénieurs congolais aux transformations technologiques menées en Afrique.</p>
           </article>
         </div>
       </section>
@@ -131,6 +164,20 @@ export default function InstitutionPage() {
         </div>
       </section>
 
+      <section className="section institution-commitments-section">
+        <div className="container">
+          <div className="section-heading split-heading">
+            <div><div className="eyebrow dark">ENGAGEMENTS DE CONDUITE</div><h2>Une gouvernance adaptée aux projets sensibles.</h2></div>
+            <p>Notre cadre d’intervention protège la qualité des décisions autant que la performance de la solution livrée.</p>
+          </div>
+          <div className="institution-commitments">
+            {commitments.map(([title, text], index) => (
+              <article key={title}><span>{String(index + 1).padStart(2, "0")}</span><h3>{title}</h3><p>{text}</p></article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="section governance-section">
         <div className="container governance-grid">
           <div className="governance-visual"><strong>ABA</strong><span>GOUVERNANCE • TECHNOLOGIE • OPÉRATIONS</span></div>
@@ -140,6 +187,17 @@ export default function InstitutionPage() {
             <p className="lead">La pérennité repose sur l’appropriation locale, la documentation et le transfert de compétences.</p>
             <p>ABA associe les parties prenantes aux choix importants, organise la formation et prépare les responsabilités d’exploitation dès la conception.</p>
           </div>
+        </div>
+      </section>
+
+      <section className="institution-access-section">
+        <div className="container institution-access">
+          <div><span>ALLER PLUS LOIN</span><h2>Évaluer ABA sur des éléments concrets.</h2></div>
+          <nav aria-label="Ressources institutionnelles">
+            <Link href="/projets">Voir nos réalisations <span aria-hidden="true">→</span></Link>
+            <Link href="/expertises">Explorer nos expertises <span aria-hidden="true">→</span></Link>
+            <Link href="/contact">Demander un échange institutionnel <span aria-hidden="true">→</span></Link>
+          </nav>
         </div>
       </section>
 

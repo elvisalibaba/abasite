@@ -24,7 +24,7 @@ export default function ContactPage() {
             <h2>Échangeons de manière claire et confidentielle.</h2>
             <p>Précisez le contexte, l’objectif recherché, les principales contraintes et le calendrier souhaité.</p>
             <div className="contact-detail"><MapPin /><div><span>Adresse</span><strong>Kinshasa, République Démocratique du Congo</strong></div></div>
-            <div className="contact-detail"><Mail /><div><span>E-mail</span><a href="mailto:contact@aba-drc.com">contact@aba-drc.com</a></div></div>
+            <div className="contact-detail"><Mail /><div><span>E-mail</span><a href="mailto:contact@aba.cd">contact@aba.cd</a></div></div>
             <div className="contact-detail"><Phone /><div><span>Téléphone</span><a href="tel:+243812130324">+243 812 130 324</a></div></div>
             <div className="confidential-note"><strong>Confidentialité</strong><p>Évitez d’envoyer des données personnelles sensibles ou des documents classifiés depuis ce formulaire public.</p></div>
           </aside>

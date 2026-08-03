@@ -1,157 +1,165 @@
 import Link from "next/link";
-import CTA from "@/components/CTA";
-import ExpertiseCard from "@/components/ExpertiseCard";
-import NewsCard from "@/components/NewsCard";
-import { ArrowRight } from "@/components/Icons";
-import { documents, expertises, news, projects } from "@/lib/site-data";
+import { ArrowRight, Database, Fingerprint, Network, Shield } from "@/components/Icons";
 import SafeImage from "@/components/media/SafeImage";
 import AnimatedSection from "@/components/motion/AnimatedSection";
-import ParallaxImage from "@/components/motion/ParallaxImage";
+import StaggerContainer from "@/components/motion/StaggerContainer";
+import StaggerItem from "@/components/motion/StaggerItem";
+import CTA from "@/components/CTA";
+import { expertises, news, projects } from "@/lib/site-data";
+import { getHomeCms } from "@/lib/cms";
 
-export default function Home() {
+const serviceIcons = [Fingerprint, Database, Network, Shield];
+
+export default async function Home() {
+  const cms = await getHomeCms();
+  const services = [...expertises.slice(0, 4), ...cms.services].slice(0, 4);
+
   return (
-    <>
-      <section className="hero premium-hero">
-        <div className="hero-grid-pattern" />
-        <div className="container hero-content">
-          <AnimatedSection className="hero-copy">
-            <div className="eyebrow">PARTENAIRE TECHNOLOGIQUE INSTITUTIONNEL</div>
-            <h1>Nous concevons les infrastructures numériques de demain.</h1>
-            <p>
-              ABA accompagne les institutions et les organisations stratégiques dans la transformation numérique,
-              la biométrie, la gouvernance des données, le développement logiciel et l’intégration technologique.
-            </p>
-            <div className="hero-actions">
-              <Link className="button primary" href="/institution">Découvrir ABA <ArrowRight /></Link>
-              <Link className="button secondary" href="/projets">Voir nos projets</Link>
+    <div className="home-app">
+      <section className="home-hero">
+        <SafeImage
+          className="home-hero-image"
+          src={cms.content.hero_image || "/images/aba/home/aba-operations-hero.png"}
+          alt="Centre technologique ABA dédié à l’identité numérique et aux opérations sécurisées"
+          fill
+          priority
+          sizes="100vw"
+        />
+        <div className="home-hero-shade" />
+        <div className="home-grid-lines" />
+        <div className="container home-hero-layout">
+          <AnimatedSection className="home-hero-copy">
+            <div className="home-status"><i /> Expertise technologique congolaise</div>
+            <h1>{cms.content.hero_title || "La technologie qui renforce les institutions."}</h1>
+            <p>{cms.content.hero_description || "ABA conçoit, intègre et déploie des infrastructures numériques critiques — identité, données, applications et sécurité — pensées pour le terrain."}</p>
+            <div className="home-hero-actions">
+              <Link className="home-button home-button-primary" href="/contact">Démarrer un projet <ArrowRight size={18} /></Link>
+              <Link className="home-button home-button-glass" href="/expertises">Explorer nos solutions</Link>
+            </div>
+            <div className="home-proof-row">
+              <div><strong>2013</strong><span>Création à Kinshasa</span></div>
+              <div><strong>360°</strong><span>Stratégie au déploiement</span></div>
+              <div><strong>RDC</strong><span>Expertise locale</span></div>
             </div>
           </AnimatedSection>
 
-          <ParallaxImage className="hero-media" >
-            <SafeImage src="/images/aba/home/representation-user-experience-interface-design.jpg" alt="Interface numérique et visualisation de données illustrant l’expertise technologique ABA" fill priority sizes="(max-width: 900px) 100vw, 48vw" />
-            <div className="floating-panel"><span>DE LA STRATÉGIE AU TERRAIN</span><strong>Concevoir · intégrer · déployer</strong></div>
-            <div className="hero-trust">Expertise <i /> Intégrité <i /> Performance</div>
-          </ParallaxImage>
+          <div className="home-command" aria-label="Capacités opérationnelles ABA">
+            <div className="command-head"><span><i /> SYSTÈME OPÉRATIONNEL</span><small>ABA / 01</small></div>
+            <div className="command-core">
+              <div className="command-ring"><Fingerprint size={44} /><span /></div>
+              <small>IDENTITÉ NUMÉRIQUE</small>
+              <strong>Sécuriser chaque interaction.</strong>
+            </div>
+            <div className="command-modules">
+              <div><Database size={19} /><span><small>DONNÉES</small><strong>Gouvernées</strong></span><i /></div>
+              <div><Network size={19} /><span><small>SYSTÈMES</small><strong>Connectés</strong></span><i /></div>
+              <div><Shield size={19} /><span><small>SÉCURITÉ</small><strong>Intégrée</strong></span><i /></div>
+            </div>
+          </div>
         </div>
+        <a className="home-scroll" href="#solutions"><span /> Découvrir</a>
       </section>
 
-      <section className="about-aba section">
+      <section className="home-trust" aria-labelledby="trust-title">
         <div className="container">
-          <div className="about-aba-heading">
-            <div><div className="eyebrow dark">À PROPOS DE ABA</div><span className="about-index">01 / INSTITUTION</span></div>
-            <h2>Bâtisseur de souveraineté numérique et technologique.</h2>
+          <div className="home-trust-head">
+            <div><span>RÉFÉRENCES & ÉCOSYSTÈME</span><h2 id="trust-title">Des relations institutionnelles et technologiques.</h2></div>
+            <p>Les références présentées illustrent l’environnement dans lequel ABA développe, intègre et déploie ses solutions.</p>
           </div>
-          <div className="about-aba-grid">
-            <AnimatedSection className="about-aba-visual">
-              <SafeImage src="/images/aba/home/presentation-aba.webp" alt="Présentation des activités ABA" fill sizes="(max-width: 900px) 100vw, 48vw" />
-              <div className="about-visual-panel"><small>NOTRE POSITIONNEMENT</small><strong>Stratégie × Technologie × Terrain</strong></div>
-              <span className="about-visual-mark" aria-hidden="true">ABA</span>
-            </AnimatedSection>
-            <div className="about-aba-copy">
-              <p className="lead">Fondée en 2013 par Claude KIKOKA et Christian KIKOKA, Africa Business Agency est une entreprise congolaise spécialisée dans les systèmes numériques, la biométrie et les technologies de sécurité.</p>
-              <p>ABA accompagne les institutions publiques, les forces de défense et de sécurité ainsi que les grandes organisations avec des solutions conçues et réalisées par des ingénieurs congolais.</p>
-              <div className="about-values">
-                <article><span>01</span><div><strong>Expertise</strong><small>Maîtriser le métier et la technologie.</small></div></article>
-                <article><span>02</span><div><strong>Intégrité</strong><small>Protéger les données et les responsabilités.</small></div></article>
-                <article><span>03</span><div><strong>Performance</strong><small>Produire des résultats mesurables.</small></div></article>
-              </div>
-              <Link className="about-aba-link" href="/institution"><span>Découvrir notre institution</span><ArrowRight /></Link>
+          <div className="home-logo-rail">
+            <a className="home-partner dark" href="https://ancienscombattants.gouv.cd/" target="_blank" rel="noreferrer">
+              <SafeImage src="/images/partners/partner-institutionnel.png" alt="Ministère de la Défense Nationale, Cabinet du Ministre Délégué" width={1320} height={300} sizes="(max-width: 700px) 78vw, 440px" />
+              <span>Partenaire institutionnel <b>↗</b></span>
+            </a>
+            <a className="home-partner" href="https://www.coppernic.fr/" target="_blank" rel="noreferrer">
+              <SafeImage src="/images/partners/coppernic.png" alt="Coppernic" width={251} height={47} sizes="(max-width: 700px) 65vw, 250px" />
+              <span>Partenaire technologique <b>↗</b></span>
+            </a>
+            <div className="home-partner">
+              <SafeImage src="/images/partners/lg.webp" alt="Institution de la République Démocratique du Congo" width={240} height={80} sizes="(max-width: 700px) 65vw, 250px" />
+              <span>Écosystème national</span>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="expertise section dark-section">
-        <div className="container">
-          <div className="section-heading split-heading">
-            <div>
-              <div className="eyebrow">NOS DOMAINES D’INTERVENTION</div>
-              <h2>Des compétences réunies autour d’un même objectif.</h2>
-            </div>
-            <p>
-              Concevoir des solutions capables de fonctionner dans la réalité institutionnelle, de la décision initiale jusqu’à l’exploitation quotidienne.
-            </p>
+      <section className="home-institution" aria-labelledby="institution-title">
+        <div className="container home-institution-layout">
+          <div className="home-institution-intro">
+            <span className="home-label">ENTREPRISE CONGOLAISE</span>
+            <h2 id="institution-title">Un partenaire technologique au service des institutions.</h2>
+            <p>Depuis Kinshasa, Africa Business Agency accompagne les organisations publiques et privées dans la conception de systèmes numériques fiables, sécurisés et adaptés aux réalités du terrain.</p>
+            <dl>
+              <div><dt>2013</dt><dd>Année de création</dd></div>
+              <div><dt>Kinshasa</dt><dd>Siège opérationnel</dd></div>
+              <div><dt>RDC</dt><dd>Ancrage national</dd></div>
+            </dl>
           </div>
-          <div className="expertise-grid">
-            {expertises.map((item) => <ExpertiseCard item={item} key={item.slug} />)}
-          </div>
-          <div className="section-end-link">
-            <Link className="text-link light-link" href="/expertises">Voir toutes nos expertises <ArrowRight /></Link>
+          <div className="home-institution-access" aria-label="Accès institutionnels rapides">
+            <Link href="/institution"><span>01</span><div><strong>Découvrir l’institution</strong><small>Histoire, mission, gouvernance et valeurs</small></div><ArrowRight size={19}/></Link>
+            <Link href="/projets"><span>02</span><div><strong>Consulter nos réalisations</strong><small>Programmes, dispositifs et résultats terrain</small></div><ArrowRight size={19}/></Link>
+            <Link href="/documents"><span>03</span><div><strong>Accéder aux documents</strong><small>Présentations et ressources institutionnelles</small></div><ArrowRight size={19}/></Link>
+            <Link href="/contact"><span>04</span><div><strong>Présenter un projet</strong><small>Échanger avec notre équipe de direction</small></div><ArrowRight size={19}/></Link>
           </div>
         </div>
       </section>
 
-      <section className="projects section">
+      <section className="home-solutions" id="solutions">
         <div className="container">
-          <div className="section-heading centered">
-            <div className="eyebrow dark">PROJETS STRATÉGIQUES</div>
-            <h2>De l’analyse à la mise en service.</h2>
-            <p>ABA structure ses interventions autour de résultats mesurables et de solutions pérennes.</p>
+          <div className="home-section-head">
+            <div><span className="home-label">01 / EXPERTISES</span><h2>Des expertises coordonnées.<br />Une chaîne technologique maîtrisée.</h2></div>
+            <div><p>Nous réunissons conseil, ingénierie, intégration et opérations pour transformer une ambition institutionnelle en système fiable.</p><Link href="/expertises">Toutes nos expertises <ArrowRight size={17} /></Link></div>
           </div>
+          <StaggerContainer className="home-bento">
+            {services.map((service, index) => {
+              const Icon = serviceIcons[index];
+              return (
+                <StaggerItem className={`home-service service-${index + 1}`} key={service.slug}>
+                  <Link href={"number" in service ? `/expertises/${service.slug}` : service.link || "/expertises"}>
+                    <div className="service-top"><span>0{index + 1}</span><i><Icon size={24} /></i></div>
+                    <div className="service-copy"><small>{index === 0 ? "IDENTIFIER" : index === 1 ? "GOUVERNER" : index === 2 ? "CONNECTER" : "PROTÉGER"}</small><h3>{service.title}</h3><p>{service.summary}</p></div>
+                    <div className="service-link">Découvrir <ArrowRight size={17} /></div>
+                  </Link>
+                </StaggerItem>
+              );
+            })}
+          </StaggerContainer>
+        </div>
+      </section>
 
-          <div className="project-feature">
-            <div className="project-image project-image-one"><SafeImage src={projects[0].image} alt={projects[0].title} width={1200} height={900} sizes="(max-width: 900px) 100vw, 50vw" /></div>
-            <div className="project-content">
-              <span className="project-label">{projects[0].status}</span>
-              <h3>{projects[0].title}</h3>
-              <p>{projects[0].summary}</p>
-              <div className="project-tags">
-                {projects[0].services.map((service) => <span key={service}>{service}</span>)}
-              </div>
-              <Link className="text-link" href={`/projets/${projects[0].slug}`}>Découvrir ce programme <ArrowRight /></Link>
-            </div>
+      <section className="home-projects">
+        <div className="container">
+          <div className="home-section-head light">
+            <div><span className="home-label">02 / RÉALISATIONS</span><h2>Des solutions pensées pour l’échelle.</h2></div>
+            <div><p>Une sélection de programmes qui relient enjeux institutionnels, technologie et résultats terrain.</p><Link href="/projets">Tous les projets <ArrowRight size={17} /></Link></div>
           </div>
-
-          <div className="project-mini-grid">
-            {projects.slice(1).map((project, index) => (
-              <article key={project.slug}>
-                <Link className="project-mini-media" href={`/projets/${project.slug}`} aria-label={`Découvrir ${project.title}`}>
-                  <SafeImage src={project.image} alt={`Projet ABA — ${project.title}`} width={800} height={600} sizes="(max-width: 767px) 50vw, 33vw" />
-                  <span>{String(index + 2).padStart(2, "0")}</span>
+          <div className="home-project-showcase">
+            <Link className="home-project-feature" href={`/projets/${projects[0].slug}`}>
+              <SafeImage src={projects[0].image} alt={projects[0].title} fill sizes="(max-width: 900px) 100vw, 66vw" />
+              <div className="project-overlay" />
+              <div className="project-number">01</div>
+              <div className="project-caption"><small>{projects[0].category}</small><h3>{projects[0].title}</h3><p>{projects[0].summary}</p><span>Voir le projet <ArrowRight size={17} /></span></div>
+            </Link>
+            <div className="home-project-stack">
+              {projects.slice(1, 3).map((project, index) => (
+                <Link href={`/projets/${project.slug}`} key={project.slug}>
+                  <span>0{index + 2}</span><div><small>{project.category}</small><h3>{project.title}</h3></div><ArrowRight size={20} />
                 </Link>
-                <div className="project-mini-content">
-                  <small>{project.category}</small>
-                  <h3>{project.title}</h3>
-                  <p>{project.summary}</p>
-                  <div className="project-mini-footer"><em>{project.technology}</em><Link href={`/projets/${project.slug}`} aria-label={`Ouvrir l’étude de cas ${project.title}`}><ArrowRight /></Link></div>
-                </div>
-              </article>
-            ))}
-          </div>
-          <div className="section-end-link center-link">
-            <Link className="text-link" href="/projets">Explorer tous les projets <ArrowRight /></Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="news section muted-section">
-        <div className="container">
-          <div className="section-heading split-heading news-heading">
-            <div>
-              <div className="eyebrow dark">ACTUALITÉS</div>
-              <h2>Nos activités et publications.</h2>
+              ))}
+              <Link className="project-all" href="/projets"><div><small>PORTFOLIO ABA</small><strong>Explorer tous nos projets</strong></div><ArrowRight /></Link>
             </div>
-            <Link className="text-link" href="/actualites">Toutes les actualités <ArrowRight /></Link>
-          </div>
-          <div className="news-grid">
-            {news.map((item) => <NewsCard item={item} key={item.slug} />)}
           </div>
         </div>
       </section>
 
-      <section className="documents section">
-        <div className="container documents-grid">
-          <div>
-            <div className="eyebrow dark">CENTRE DE RESSOURCES</div>
-            <h2>Documents et publications institutionnelles.</h2>
-            <p>Rapports, notes techniques, présentations de projets et documents de référence publiés par ABA.</p>
-            <Link className="text-link" href="/documents">Accéder au centre de ressources <ArrowRight /></Link>
-          </div>
-          <div className="document-list">
-            {documents.slice(0, 3).map((document) => (
-              <Link href="/documents" key={document.title}>
-                <span><small>{document.type}</small>{document.title}</span>
-                <strong>PDF</strong>
+      <section className="home-insights">
+        <div className="container">
+          <div className="home-section-head compact"><div><span className="home-label">03 / ACTUALITÉS</span><h2>À la une chez ABA.</h2></div><Link href="/actualites">Toutes les actualités <ArrowRight size={17} /></Link></div>
+          <div className="home-news-grid">
+            {news.slice(0, 3).map((item, index) => (
+              <Link href={`/actualites/${item.slug}`} key={item.slug} className={index === 0 ? "featured" : ""}>
+                <div className="home-news-meta"><span>{item.category}</span><time dateTime={item.isoDate}>{item.date}</time></div>
+                <h3>{item.title}</h3><p>{item.excerpt}</p><i><ArrowRight size={18} /></i>
               </Link>
             ))}
           </div>
@@ -159,6 +167,7 @@ export default function Home() {
       </section>
 
       <CTA />
-    </>
+
+    </div>
   );
 }

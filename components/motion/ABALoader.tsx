@@ -7,7 +7,14 @@ export default function ABALoader() {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    const timer = window.setTimeout(() => setVisible(false), 5200);
+    const storageKey = "aba-intro-seen";
+    if (window.sessionStorage.getItem(storageKey)) {
+      setVisible(false);
+      return;
+    }
+
+    window.sessionStorage.setItem(storageKey, "true");
+    const timer = window.setTimeout(() => setVisible(false), 1100);
     return () => window.clearTimeout(timer);
   }, []);
 
