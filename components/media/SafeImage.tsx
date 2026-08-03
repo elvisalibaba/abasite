@@ -42,6 +42,7 @@ export default function SafeImage({
             sizes={sizes}
             className={className}
             onError={() => setHasError(true)}
+            unoptimized={src.startsWith("http://") || src.startsWith("https://")}
         />
     );
 }

@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   },
   description:
     "Africa Business Agency accompagne les institutions et organisations dans leurs projets stratégiques, technologiques et opérationnels.",
-  metadataBase: new URL("https://aba-drc.com"),
+  metadataBase: new URL("https://aba.cd"),
   applicationName: "Africa Business Agency",
   icons: {
     icon: [{ url: "/image.png", type: "image/png" }],
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     title: "Africa Business Agency",
     description:
       "Solutions institutionnelles, transformation numérique, biométrie, audit et déploiement opérationnel.",
-    url: "https://aba-drc.com",
+    url: "https://aba.cd",
     siteName: "Africa Business Agency",
     locale: "fr_CD",
     type: "website",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="fr">
+    <html lang="fr" suppressHydrationWarning>
       <body>
         <ABALoader />
         <ScrollProgress />

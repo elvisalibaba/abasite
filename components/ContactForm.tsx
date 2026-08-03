@@ -24,7 +24,7 @@ export default function ContactForm() {
       message
     ].join("\n");
 
-    window.location.href = `mailto:contact@aba-drc.com?subject=${encodeURIComponent(`[Site ABA] ${subject}`)}&body=${encodeURIComponent(body)}`;
+    window.location.href = `mailto:contact@aba.cd?subject=${encodeURIComponent(`[Site ABA] ${subject}`)}&body=${encodeURIComponent(body)}`;
     setSent(true);
   }
 
