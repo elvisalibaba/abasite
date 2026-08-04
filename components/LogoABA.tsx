@@ -10,9 +10,9 @@ type LogoABAProps = {
 };
 
 const sizeMap = {
-    sm: { width: 132, height: 48 },
-    md: { width: 180, height: 66 },
-    lg: { width: 240, height: 88 }
+    sm: { width: 132, height: 76 },
+    md: { width: 180, height: 103 },
+    lg: { width: 240, height: 137 }
 } as const;
 
 export default function LogoABA({
@@ -24,7 +24,7 @@ export default function LogoABA({
 }: LogoABAProps) {
     const dims = sizeMap[size];
     const content = (
-        <div className={`logo-aba ${variant} ${className}`.trim()}>
+        <div className={`logo-aba size-${size} ${variant} ${className}`.trim()}>
             <Image
                 src="/image.png"
                 alt="Logo Africa Business Agency"
@@ -33,6 +33,7 @@ export default function LogoABA({
                 priority={priority}
                 sizes="(max-width: 768px) 140px, 220px"
                 className="logo-aba-image"
+                style={{ width: "100%", height: "auto" }}
             />
         </div>
     );

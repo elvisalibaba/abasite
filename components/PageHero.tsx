@@ -33,8 +33,8 @@ export default function PageHero({ eyebrow, title, description, accent = "defaul
           ) : null}
         </div>
         <div className="page-hero-monogram">
-          <SafeImage src={image || `/images/aba/${accent}/hero.webp`} alt={alt || `Illustration institutionnelle — ${eyebrow}`} fill sizes="(max-width: 1023px) 100vw, 45vw" />
-          <div className="page-hero-signature"><LogoABA variant="light" size="sm" /><small>EXPERTISE • INTÉGRITÉ • PERFORMANCE</small></div>
+          <SafeImage src={image || `/images/aba/${accent}/hero.webp`} alt={alt || `Illustration institutionnelle — ${eyebrow}`} fill priority sizes="(max-width: 1023px) 100vw, 45vw" />
+          <div className="page-hero-signature"><LogoABA variant="light" size="sm" priority /><small>EXPERTISE • INTÉGRITÉ • PERFORMANCE</small></div>
         </div>
       </div>
     </section>

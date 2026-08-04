@@ -1,7 +1,3 @@
 import { redirect } from "next/navigation";
-import { createSupabaseServerClient } from "@/lib/supabase/server";
-import ProjectSubmissionForm from "@/components/auth/ProjectSubmissionForm";
-import { visitorLogoutAction } from "./actions";
-export const metadata={title:"Espace projet"}; export const dynamic="force-dynamic";
-const labels:Record<string,string>={soumis:"Soumis",en_etude:"En étude",rendez_vous:"Rendez-vous",accepte:"Accepté",refuse:"Non retenu"};
-export default async function Page(){const supabase=await createSupabaseServerClient();const {data:{user}}=await supabase.auth.getUser();if(!user)redirect("/espace/login");const {data:profile}=await supabase.from("profiles").select("full_name,role").eq("id",user.id).single();if(profile&&profile.role!=="visiteur")redirect("/admin");const {data:submissions}=await supabase.from("project_submissions").select("*").order("created_at",{ascending:false});return <section className="visitor-dashboard"><div className="container"><header className="visitor-dashboard-head"><div><span>AFRICA BUSINESS AGENCY</span><h1>Espace projet</h1><p>Bienvenue {profile?.full_name||user.email}. Déposez une initiative et suivez son traitement.</p></div><form action={visitorLogoutAction}><button>Se déconnecter</button></form></header><div className="visitor-dashboard-layout"><ProjectSubmissionForm/><aside><h2>Vos demandes</h2><p>Chaque dossier est examiné par l’équipe ABA.</p><div className="submission-list">{(submissions||[]).map(item=><article key={item.id}><span>{labels[item.status]||item.status}</span><h3>{item.title}</h3><p>{item.organization}</p><small>Transmis le {new Date(item.created_at).toLocaleDateString("fr-FR")}</small></article>)}{!submissions?.length&&<div className="submission-empty">Aucune demande transmise.</div>}</div></aside></div></div></section>}
+
+export default function Page(){redirect("/admin")}

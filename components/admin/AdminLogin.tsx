@@ -19,7 +19,7 @@ export default function AdminLogin() {
         <label>Mot de passe<input name="password" type="password" autoComplete="current-password" placeholder="••••••••" required /></label>
         {state.message && <div className="admin-alert error">{state.message}</div>}
         <button className="admin-primary-button" disabled={pending}>{pending ? "Connexion…" : "Se connecter"}<span>→</span></button>
-        <div className="admin-login-signup">Pas encore de compte ? <Link href="/inscription">Créer un compte</Link></div>
+        <div className="admin-login-signup">Les accès sont créés uniquement par un administrateur ABA.</div>
         <Link href="/">← Retour au site public</Link>
       </form>
     </div>

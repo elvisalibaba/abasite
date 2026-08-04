@@ -6,21 +6,20 @@ import StaggerContainer from "@/components/motion/StaggerContainer";
 import StaggerItem from "@/components/motion/StaggerItem";
 import CTA from "@/components/CTA";
 import { expertises, news, projects } from "@/lib/site-data";
-import { getHomeCms } from "@/lib/cms";
+import { homeHero } from "@/data/home-content";
 
 const serviceIcons = [Fingerprint, Database, Network, Shield];
 
-export default async function Home() {
-  const cms = await getHomeCms();
-  const services = [...expertises.slice(0, 4), ...cms.services].slice(0, 4);
+export default function Home() {
+  const services = expertises.slice(0, 4);
 
   return (
     <div className="home-app">
       <section className="home-hero">
         <SafeImage
           className="home-hero-image"
-          src={cms.content.hero_image || "/images/aba/home/aba-operations-hero.png"}
-          alt="Centre technologique ABA dédié à l’identité numérique et aux opérations sécurisées"
+          src={homeHero.image}
+          alt={homeHero.imageAlt}
           fill
           priority
           sizes="100vw"
@@ -29,17 +28,15 @@ export default async function Home() {
         <div className="home-grid-lines" />
         <div className="container home-hero-layout">
           <AnimatedSection className="home-hero-copy">
-            <div className="home-status"><i /> Expertise technologique congolaise</div>
-            <h1>{cms.content.hero_title || "La technologie qui renforce les institutions."}</h1>
-            <p>{cms.content.hero_description || "ABA conçoit, intègre et déploie des infrastructures numériques critiques — identité, données, applications et sécurité — pensées pour le terrain."}</p>
+            <div className="home-status"><i /> {homeHero.eyebrow}</div>
+            <h1>{homeHero.title}</h1>
+            <p>{homeHero.description}</p>
             <div className="home-hero-actions">
-              <Link className="home-button home-button-primary" href="/contact">Démarrer un projet <ArrowRight size={18} /></Link>
-              <Link className="home-button home-button-glass" href="/expertises">Explorer nos solutions</Link>
+              <Link className="home-button home-button-primary" href={homeHero.primaryAction.href}>{homeHero.primaryAction.label} <ArrowRight size={18} /></Link>
+              <Link className="home-button home-button-glass" href={homeHero.secondaryAction.href}>{homeHero.secondaryAction.label}</Link>
             </div>
             <div className="home-proof-row">
-              <div><strong>2013</strong><span>Création à Kinshasa</span></div>
-              <div><strong>360°</strong><span>Stratégie au déploiement</span></div>
-              <div><strong>RDC</strong><span>Expertise locale</span></div>
+              {homeHero.facts.map(fact=><div key={fact.value}><strong>{fact.value}</strong><span>{fact.label}</span></div>)}
             </div>
           </AnimatedSection>
 
@@ -102,7 +99,7 @@ export default async function Home() {
               const Icon = serviceIcons[index];
               return (
                 <StaggerItem className={`home-service service-${index + 1}`} key={service.slug}>
-                  <Link href={"number" in service ? `/expertises/${service.slug}` : service.link || "/expertises"}>
+                  <Link href={`/expertises/${service.slug}`}>
                     <div className="service-top"><span>0{index + 1}</span><i><Icon size={24} /></i></div>
                     <div className="service-copy"><small>{index === 0 ? "IDENTIFIER" : index === 1 ? "GOUVERNER" : index === 2 ? "CONNECTER" : "PROTÉGER"}</small><h3>{service.title}</h3><p>{service.summary}</p></div>
                     <div className="service-link">Découvrir <ArrowRight size={17} /></div>

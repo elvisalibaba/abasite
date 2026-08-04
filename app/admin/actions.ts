@@ -149,14 +149,23 @@ export async function createUserAction(formData: FormData): Promise<ActionResult
   if (profile.role !== "admin") return { ok: false, message: "Action réservée aux administrateurs." };
   try {
     const admin = createSupabaseAdminClient();
-    const role = clean(formData, "role") as "admin" | "direction" | "personnel" | "garde" | "chef_projet" | "externe" | "visiteur";
+    const role = clean(formData, "role") as "admin" | "direction" | "personnel" | "garde" | "chef_projet" | "externe";
+    if(!["admin","direction","personnel","garde","chef_projet","externe"].includes(role))return {ok:false,message:"Rôle invalide."};
+    const email=clean(formData,"email").toLowerCase(),fullName=clean(formData,"full_name");
     const whatsappPhone=clean(formData,"whatsapp_phone").replace(/[^0-9+]/g,"");
-    if(!whatsappPhone)return {ok:false,message:"Le numéro WhatsApp est obligatoire."};
-    const { data, error } = await admin.auth.admin.createUser({ email: clean(formData, "email"), password: clean(formData, "password"), email_confirm: true, user_metadata: { full_name: clean(formData, "full_name"),whatsapp_phone:whatsappPhone } });
+    if(!email||!fullName||!whatsappPhone)return {ok:false,message:"Nom, e-mail et WhatsApp sont obligatoires."};
+    const temporaryPassword=`Aba-${crypto.randomUUID().slice(0,8)}!`;
+    const { data, error } = await admin.auth.admin.createUser({ email, password: temporaryPassword, email_confirm: true, user_metadata: { full_name: fullName,whatsapp_phone:whatsappPhone } });
     if (error) return { ok: false, message: error.message };
-    const { error: profileError } = await admin.from("profiles").update({ full_name: clean(formData, "full_name"), role,whatsapp_phone:whatsappPhone,whatsapp_opt_in:true,whatsapp_opt_in_at:new Date().toISOString() }).eq("id", data.user.id);
+    const { error: profileError } = await admin.from("profiles").update({ full_name: fullName, role,whatsapp_phone:whatsappPhone,whatsapp_opt_in:true,whatsapp_opt_in_at:new Date().toISOString() }).eq("id", data.user.id);
     if (profileError) return { ok: false, message: profileError.message };
-    revalidatePath("/admin"); return { ok: true, message: "Compte utilisateur créé." };
+    const loginUrl=`${process.env.NEXT_PUBLIC_SITE_URL||"https://aba.cd"}/admin/login`;
+    if(process.env.RESEND_API_KEY){
+      const response=await fetch("https://api.resend.com/emails",{method:"POST",headers:{Authorization:`Bearer ${process.env.RESEND_API_KEY}`,"Content-Type":"application/json"},body:JSON.stringify({from:`Africa Business Agency <${process.env.ABA_FROM_EMAIL||"contact@aba.cd"}>`,to:[email],subject:"Votre accès sécurisé ABA",text:`Bonjour ${fullName},\n\nUn administrateur ABA vous a créé un accès avec le rôle « ${role} ».\n\nLien de connexion : ${loginUrl}\nAdresse e-mail : ${email}\nMot de passe temporaire : ${temporaryPassword}\n\nConnectez-vous puis conservez vos accès de manière confidentielle.`})});
+      if(!response.ok)return {ok:false,message:"Compte créé, mais l’e-mail d’invitation n’a pas pu être envoyé."};
+    }
+    revalidatePath("/admin");
+    return { ok: true, message: process.env.RESEND_API_KEY?"Compte créé et invitation envoyée par e-mail.":`Compte créé. À transmettre : ${loginUrl} — ${email} — ${temporaryPassword}` };
   } catch (error) { return { ok: false, message: error instanceof Error ? error.message : "Création impossible." }; }
 }
 
