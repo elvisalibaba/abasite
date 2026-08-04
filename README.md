@@ -49,6 +49,7 @@ Le site dispose d’un espace d’administration à l’adresse `/admin`. Il per
 1. Créez un projet sur Supabase.
 2. Exécutez les migrations du dossier [`supabase/migrations`](supabase/migrations) dans leur ordre numérique, notamment `012_contact_requests.sql` pour les demandes de contact.
 3. Copiez `.env.example` vers `.env.local` et renseignez les trois clés Supabase. La clé `SUPABASE_SERVICE_ROLE_KEY` doit rester exclusivement côté serveur.
+   Sur Vercel, ajoutez également ces variables à l’environnement `Production`, puis lancez un nouveau déploiement afin que les variables `NEXT_PUBLIC_*` soient intégrées au build.
 4. Dans Supabase Authentication, créez le premier utilisateur.
 5. Dans l’éditeur SQL, attribuez-lui le rôle administrateur :
 
