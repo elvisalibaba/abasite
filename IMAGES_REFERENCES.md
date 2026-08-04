@@ -12,7 +12,7 @@ Ce registre permet d’identifier chaque visuel par page et par numéro. Les che
 
 | Référence simple | Utilisation | Fichier |
 |---|---|---|
-| Accueil — image 1 | Grande image du hero | `/images/images news/data-center-it-experts-using-artificial-intelligence-neural-networks-technology.jpg` |
+| Accueil — image 1 | Grande image du hero optimisée | `/images/images news/data-center-ai-hero.webp` |
 | Accueil — image 2 | Logo du partenaire institutionnel | `/images/partners/partner-institutionnel.png` |
 | Accueil — image 3 | Logo Coppernic | `/images/partners/coppernic.png` |
 | Accueil — image 4 | Logo de l’écosystème national | `/images/partners/lg.webp` |

@@ -44,7 +44,7 @@ export default function Home() {
         <a className="home-scroll" href="#solutions"><span /> Découvrir</a>
       </section>
 
-      <section className="home-trust" aria-labelledby="trust-title">
+      <section className="home-trust home-trust-compact" aria-labelledby="trust-title">
         <div className="container home-trust-line">
           <span id="trust-title">RÉFÉRENCES &amp; ÉCOSYSTÈME</span>
           <div className="home-trust-partners">

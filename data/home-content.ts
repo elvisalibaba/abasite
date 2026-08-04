@@ -8,7 +8,7 @@ export const homeHero = {
   title: "Nous concevons les infrastructures numériques de demain.",
   description:
     "ABA accompagne les institutions et les organisations stratégiques dans la transformation numérique, la biométrie, la gouvernance des données, le développement logiciel et l’intégration technologique.",
-  image: "/images/images news/data-center-it-experts-using-artificial-intelligence-neural-networks-technology.jpg",
+  image: "/images/images news/data-center-ai-hero.webp",
   imageAlt:
     "Experts informatiques travaillant avec des technologies d’intelligence artificielle dans un centre de données",
   primaryAction: {
