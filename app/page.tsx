@@ -6,7 +6,7 @@ import StaggerContainer from "@/components/motion/StaggerContainer";
 import StaggerItem from "@/components/motion/StaggerItem";
 import CTA from "@/components/CTA";
 import { expertises, news, projects } from "@/lib/site-data";
-import { homeHero } from "@/data/home-content";
+import { homeExpertiseImages, homeHero } from "@/data/home-content";
 
 const serviceIcons = [Fingerprint, Database, Network, Shield];
 
@@ -45,24 +45,18 @@ export default function Home() {
       </section>
 
       <section className="home-trust" aria-labelledby="trust-title">
-        <div className="container">
-          <div className="home-trust-head">
-            <div><span>RÉFÉRENCES & ÉCOSYSTÈME</span><h2 id="trust-title">Des relations institutionnelles et technologiques.</h2></div>
-            <p>Les références présentées illustrent l’environnement dans lequel ABA développe, intègre et déploie ses solutions.</p>
-          </div>
-          <div className="home-logo-rail">
-            <a className="home-partner dark" href="https://ancienscombattants.gouv.cd/" target="_blank" rel="noreferrer">
-              <SafeImage src="/images/partners/partner-institutionnel.png" alt="Ministère de la Défense Nationale, Cabinet du Ministre Délégué" width={1320} height={300} sizes="(max-width: 700px) 78vw, 440px" />
-              <span>Partenaire institutionnel <b>↗</b></span>
+        <div className="container home-trust-line">
+          <span id="trust-title">RÉFÉRENCES &amp; ÉCOSYSTÈME</span>
+          <div className="home-trust-partners">
+            <a href="https://ancienscombattants.gouv.cd/" target="_blank" rel="noreferrer" aria-label="Partenaire institutionnel">
+              <SafeImage src="/images/partners/partner-institutionnel.png" alt="Partenaire institutionnel" width={1320} height={300} sizes="180px" />
             </a>
-            <a className="home-partner" href="https://www.coppernic.fr/" target="_blank" rel="noreferrer">
-              <SafeImage src="/images/partners/coppernic.png" alt="Coppernic" width={251} height={47} sizes="(max-width: 700px) 65vw, 250px" />
-              <span>Partenaire technologique <b>↗</b></span>
+            <a href="https://www.coppernic.fr/" target="_blank" rel="noreferrer" aria-label="Coppernic">
+              <SafeImage src="/images/partners/coppernic.png" alt="Coppernic" width={251} height={47} sizes="120px" />
             </a>
-            <div className="home-partner">
-              <SafeImage src="/images/partners/lg.webp" alt="Institution de la République Démocratique du Congo" width={240} height={80} sizes="(max-width: 700px) 65vw, 250px" />
-              <span>Écosystème national</span>
-            </div>
+            <span aria-label="Écosystème national">
+              <SafeImage src="/images/partners/lg.webp" alt="Écosystème national" width={240} height={80} sizes="110px" />
+            </span>
           </div>
         </div>
       </section>
@@ -97,9 +91,11 @@ export default function Home() {
           <StaggerContainer className="home-bento">
             {services.map((service, index) => {
               const Icon = serviceIcons[index];
+              const media = homeExpertiseImages[index];
               return (
-                <StaggerItem className={`home-service service-${index + 1}`} key={service.slug}>
+                <StaggerItem className={`home-service service-${index + 1} service-with-image`} key={service.slug}>
                   <Link href={`/expertises/${service.slug}`}>
+                    <div className="service-media" aria-hidden="true"><SafeImage src={media.image} alt={media.imageAlt} fill sizes="(max-width: 767px) 100vw, 42vw" /><span /></div>
                     <div className="service-top"><span>0{index + 1}</span><i><Icon size={24} /></i></div>
                     <div className="service-copy"><small>{index === 0 ? "IDENTIFIER" : index === 1 ? "GOUVERNER" : index === 2 ? "CONNECTER" : "PROTÉGER"}</small><h3>{service.title}</h3><p>{service.summary}</p></div>
                     <div className="service-link">Découvrir <ArrowRight size={17} /></div>

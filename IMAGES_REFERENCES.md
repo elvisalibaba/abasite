@@ -12,7 +12,7 @@ Ce registre permet d’identifier chaque visuel par page et par numéro. Les che
 
 | Référence simple | Utilisation | Fichier |
 |---|---|---|
-| Accueil — image 1 | Grande image du hero | `/images/aba/home/aba-operations-hero.png` |
+| Accueil — image 1 | Grande image du hero | `/images/images news/data-center-it-experts-using-artificial-intelligence-neural-networks-technology.jpg` |
 | Accueil — image 2 | Logo du partenaire institutionnel | `/images/partners/partner-institutionnel.png` |
 | Accueil — image 3 | Logo Coppernic | `/images/partners/coppernic.png` |
 | Accueil — image 4 | Logo de l’écosystème national | `/images/partners/lg.webp` |
@@ -38,6 +38,8 @@ L’image et tous les textes du hero d’accueil se modifient directement dans `
 | Expertise — image 7 | Sécurité des systèmes | `/images/aba/expertises/securite-si.webp` |
 | Expertise — image 8 | Déploiement et supervision | `/images/aba/expertises/deploiement-supervision.webp` |
 | Expertise — image 9 | Transformation institutionnelle | `/images/aba/expertises/transformation-institutionnelle.webp` |
+
+Les quatre cartes Expertises de l’accueil utilisent les images 1, 3, 4 et 8. Leurs chemins se modifient dans `data/home-content.ts`, tableau `homeExpertiseImages`.
 
 ## Projets
 
