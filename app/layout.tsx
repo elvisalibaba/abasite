@@ -6,14 +6,17 @@ import "@/styles/tokens.css";
 import "@/styles/public-system.css";
 import ScrollProgress from "@/components/motion/ScrollProgress";
 import { siteConfig } from "@/lib/site-config";
+import { Manrope } from "next/font/google";
+
+const manrope = Manrope({ subsets: ["latin"], variable: "--font-aba", display: "swap" });
 
 export const metadata: Metadata = {
   title: {
-    default: "Africa Business Agency | Expertise, Intégrité, Performance",
+    default: "Africa Business Agency | Souveraineté numérique et technologique",
     template: "%s | Africa Business Agency"
   },
   description:
-    "Africa Business Agency accompagne les institutions et organisations dans leurs projets stratégiques, technologiques et opérationnels.",
+    "Africa Business Agency conçoit et déploie des systèmes d’information, des solutions biométriques et des technologies sécurisées pour les institutions publiques, les forces de défense et de sécurité ainsi que les grandes organisations africaines.",
   metadataBase: new URL(siteConfig.url),
   applicationName: "Africa Business Agency",
   icons: {
@@ -33,7 +36,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Africa Business Agency",
     description:
-      "Solutions institutionnelles, transformation numérique, biométrie, audit et déploiement opérationnel.",
+      "Systèmes d’information, solutions biométriques et technologies sécurisées pour les institutions africaines.",
     url: "https://aba.cd",
     siteName: "Africa Business Agency",
     locale: "fr_CD",
@@ -42,14 +45,14 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true }
   ,alternates: { canonical: "/" }
-  ,twitter: { card: "summary_large_image", title: "Africa Business Agency", description: "Expertise, intégrité et performance au service des projets institutionnels." }
+  ,twitter: { card: "summary_large_image", title: "Africa Business Agency | Souveraineté numérique", description: "Bâtisseur de souveraineté numérique et technologique pour les institutions africaines." }
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const organization = { "@context":"https://schema.org", "@type":"Organization", name:siteConfig.name, url:siteConfig.url, email:siteConfig.email, telephone:siteConfig.phone, address:{"@type":"PostalAddress",addressLocality:"Kinshasa",addressCountry:"CD"} };
   return (
     <html lang="fr" suppressHydrationWarning>
-      <body>
+      <body className={manrope.variable}>
         <a className="skip-link" href="#contenu-principal">Aller au contenu</a>
         <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(organization)}} />
         <ScrollProgress />

@@ -187,7 +187,8 @@ export async function saveProjectAction(formData: FormData): Promise<ActionResul
   const { error } = await supabase.from("projects").insert({
     name, description: clean(formData, "description"), status: clean(formData, "status") || "planifie",
     priority: clean(formData, "priority") || "normale", progress: Number(clean(formData, "progress") || 0),
-    due_date: clean(formData, "due_date") || null, owner_id: clean(formData,"owner_id")||user.id, created_by: user.id
+    due_date: clean(formData, "due_date") || null, repository_url: clean(formData, "repository_url") || null,
+    owner_id: clean(formData,"owner_id")||user.id, created_by: user.id
   });
   if (error) return { ok: false, message: error.message };
   revalidatePath("/admin"); return { ok: true, message: "Projet créé." };

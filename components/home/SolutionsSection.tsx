@@ -1,0 +1,9 @@
+"use client";
+import { useState } from "react";
+import Image from "next/image";
+import { solutions } from "@/data/homepage";
+import { Container, PrimaryButton, SectionHeading } from "@/components/shared/HomeUI";
+
+const images=["/images/aba/projects/controle-biometrique.webp","/images/aba/home/identification-scanning-system.jpg","/images/aba/expertises/biometrie/hero.webp","/images/aba/projects/plateforme-institutionnelle.webp","/images/aba/projects/audit-base-institutionnelle.webp","/images/aba/projects/centre-monitoring.webp"];
+export function SolutionPanel({solution,index}:{solution:(typeof solutions)[number];index:number}){return <article className="solution-panel"><div className="solution-art"><Image src={images[index]} alt="" fill sizes="(max-width: 900px) 100vw, 40vw"/><span>0{index+1}</span></div><div><span className="solution-kicker">Réponse institutionnelle</span><h3>{solution.title}</h3><dl><div><dt>Problème traité</dt><dd>{solution.problem}</dd></div><div><dt>Réponse ABA</dt><dd>{solution.response}</dd></div><div><dt>Bénéfice institutionnel</dt><dd>{solution.benefit}</dd></div></dl><PrimaryButton href="/expertises">Découvrir la solution</PrimaryButton></div></article>}
+export default function SolutionsSection(){const [active,setActive]=useState(0);return <section className="aba-section solutions-section" id="solutions"><Container><SectionHeading eyebrow="Solutions ABA" title="Des solutions conçues pour les enjeux réels des institutions."/><div className="solution-tabs" role="tablist" aria-label="Solutions ABA">{solutions.map((item,index)=><button key={item.title} role="tab" aria-selected={active===index} aria-controls="solution-panel" onClick={()=>setActive(index)}><span>0{index+1}</span>{item.title}</button>)}</div><div id="solution-panel" role="tabpanel"><SolutionPanel solution={solutions[active]} index={active}/></div></Container></section>}

@@ -17,5 +17,5 @@ export const solutionGroups:SolutionGroup[] = [
 ];
 
 export const publicLinks = [
-  ["Accueil","/"], ["À propos","/institution"], ["Projets","/projets"], ["Actualités","/actualites"], ["Contact","/contact"],
+  ["Accueil","/"], ["À propos","/institution"], ["Expertises","/expertises"], ["Réalisations","/projets"], ["Actualités","/actualites"], ["Contact","/contact"],
 ] as const;

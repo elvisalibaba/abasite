@@ -1,0 +1,2 @@
+export type CardRequestStatus="soumise"|"en_verification"|"approuvee"|"rejetee"|"imprimee";
+export type CardRequest={id:string;matricule:string;card_type:"service"|"visite";first_name:string;middle_name:string;last_name:string;job_title:string;department:string;phone:string;email:string;photo_path:string;photo_signed_url:string;status:CardRequestStatus;created_at:string;public_slug:string|null;bio:string;linkedin_url:string;personal_website:string};

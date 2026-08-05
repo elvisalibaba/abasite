@@ -15,7 +15,7 @@ export default function AdminShell({ children, name, email, role }: { children: 
   }, [pathname]);
   const links = [
     ["overview","⌂","Vue d’ensemble","Pilotage"],["projects","▦","Projets","Pilotage"],["tasks","✓","Tâches","Pilotage"],["submissions","⇩","Demandes","Pilotage"],["activity","↻","Activité","Pilotage"],
-    ["calendar","□","Calendrier","Collaboration"],["notes","≡","Notes","Collaboration"],["cards","▤","Cartes","Collaboration"],["mail","✉","Messagerie","Collaboration"],
+    ["calendar","□","Calendrier","Collaboration"],["notes","≡","Notes","Collaboration"],["cards","▤","Cartes","Collaboration"],["card-requests","⇩","Demandes cartes","Collaboration"],["identity-studio","◆","Studio cartes","Collaboration"],["mail","✉","Messagerie","Collaboration"],
     ["contents","✎","Contenus","Site public"],["services","◇","Services","Site public"],["media","▧","Médiathèque","Site public"],["documents","▥","Banque de documents","Site public"],["users","♙","Utilisateurs","Administration"]
   ];
   const visibleLinks=["externe","chef_projet"].includes(role)?links.filter(item=>["overview","projects","tasks","activity"].includes(item[0])):links.filter(item=>item[0]!=="users"||role==="admin");

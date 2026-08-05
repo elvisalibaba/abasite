@@ -37,7 +37,10 @@ export default function AdminDashboard({ view="overview",currentUserId,services,
 
         <section id="overview" className="admin-welcome">
           <div><span>VENDREDI · ADMINISTRATION ABA</span><h2>Gardez votre site à jour.</h2><p>Gérez vos contenus, services, médias et accès depuis un espace unique et sécurisé.</p></div>
-          <button onClick={() => setModal({ type: "content" })}>+ Ajouter un contenu</button>
+          <div className="admin-welcome-actions">
+            <Link href="/admin/identity-studio">◆ Ouvrir Identity Studio</Link>
+            <button onClick={() => setModal({ type: "content" })}>+ Ajouter un contenu</button>
+          </div>
         </section>
         <section className="admin-stats">
           <article><span className="red">▦</span><div><strong>{projects.filter(item=>item.status!=="termine").length}</strong><small>Projets actifs</small></div></article>
