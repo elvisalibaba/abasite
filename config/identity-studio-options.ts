@@ -20,5 +20,7 @@ export const ABA_DEPARTMENTS=[
   "Projets",
   "Administration des projets",
   "Service client",
+  "Sécurité et gardiennage",
+  "Nettoyage et entretien",
   "Projets externes",
 ] as const;
