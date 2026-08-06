@@ -18,7 +18,7 @@ export const companyConfig: CompanyProfile = {
   ],
   address: "62 Avenue de la Gombe, croisement Batetela",
   cityCountry: "Kinshasa, République démocratique du Congo",
-  phone: "+243 XXX XXX XXX",
+  phone: "+243 812 130 324",
   email: "contact@aba.cd",
   website: "https://aba.cd",
   qrCodeUrl: "https://aba.cd",

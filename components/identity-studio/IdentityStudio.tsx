@@ -38,14 +38,14 @@ type Props = {
 };
 
 const EMPTY_PERSON: PersonProfile = {
-  firstName: "Elvis",
+  firstName: "",
   middleName: "",
-  lastName: "Makasi",
-  jobTitle: "Consultant en transformation numérique institutionnelle",
-  department: "Informatique et innovation",
-  employeeId: "ABA-0001",
-  phone: "+243 000 000 000",
-  email: "elvis.makasi@aba.cd",
+  lastName: "",
+  jobTitle: "",
+  department: "",
+  employeeId: "",
+  phone: "",
+  email: "",
   photoDataUrl: "",
 };
 
